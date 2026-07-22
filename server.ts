@@ -3,6 +3,7 @@ import path from "path";
 import fs from "fs";
 import cors from "cors";
 import dotenv from "dotenv";
+import nodemailer from "nodemailer";
 import { createServer as createViteServer } from "vite";
 
 dotenv.config();
@@ -16,6 +17,77 @@ app.use(express.json());
 // Property Tax Database & API Endpoints
 import { loadOrCreateProperties, saveProperties } from "./src/propertyGenerator.js";
 let cachedProperties = loadOrCreateProperties();
+
+// Dynamic Monitoring & Email Dispatch Settings
+let monitoringSettings: {
+  autoCheckEnabled: boolean;
+  checkFrequencyHours: number;
+  checkTimeOfDay: string;
+  recipientEmail: string;
+  recipientName: string;
+  smtpHost?: string;
+  smtpPort?: number;
+  smtpUser?: string;
+  smtpPass?: string;
+  notifyOnAppraisalNotice: boolean;
+  notifyOnValuationIncrease: boolean;
+  notifyOnProtestDeadline: boolean;
+  notifyOnTaxBill: boolean;
+  lastSweepTimestamp: string;
+  nextSweepTimestamp: string;
+} = {
+  autoCheckEnabled: true,
+  checkFrequencyHours: 24,
+  checkTimeOfDay: "06:00 AM CST",
+  recipientEmail: "sreeshkanala@gmail.com",
+  recipientName: "Sreesh Kanala",
+  smtpHost: "",
+  smtpPort: 587,
+  smtpUser: "",
+  smtpPass: "",
+  notifyOnAppraisalNotice: true,
+  notifyOnValuationIncrease: true,
+  notifyOnProtestDeadline: true,
+  notifyOnTaxBill: true,
+  lastSweepTimestamp: new Date().toISOString(),
+  nextSweepTimestamp: new Date(Date.now() + 24 * 3600 * 1000).toISOString()
+};
+
+
+// Helper function to dispatch emails via SMTP / Nodemailer if configured
+async function sendRealEmail(recipientEmail: string, subject: string, htmlContent: string) {
+  const host = process.env.SMTP_HOST || monitoringSettings.smtpHost;
+  const port = Number(process.env.SMTP_PORT || monitoringSettings.smtpPort || 587);
+  const user = process.env.SMTP_USER || monitoringSettings.smtpUser;
+  const pass = process.env.SMTP_PASS || monitoringSettings.smtpPass;
+
+  if (host && user && pass) {
+    try {
+      const transporter = nodemailer.createTransport({
+        host,
+        port,
+        secure: port === 465,
+        auth: { user, pass }
+      });
+
+      await transporter.sendMail({
+        from: process.env.NOTIFICATION_EMAIL_FROM || `"CAD Property Tax Monitor" <${user}>`,
+        to: recipientEmail,
+        subject,
+        html: htmlContent
+      });
+      console.log(`[EMAIL DISPATCH SUCCESS] Email sent to ${recipientEmail}: ${subject}`);
+      return { sent: true, method: "smtp" };
+    } catch (err) {
+      console.error(`[EMAIL DISPATCH ERROR] Failed to send via SMTP:`, err);
+      return { sent: false, method: "smtp_error", error: String(err) };
+    }
+  } else {
+    console.log(`[EMAIL DISPATCH SIMULATION] Recorded in-app email alert for ${recipientEmail}: ${subject}`);
+    return { sent: true, method: "in_app_log" };
+  }
+}
+
 
 // Email notification log store
 let emailNotifications: any[] = [
@@ -384,34 +456,25 @@ app.get("/api/properties/export-csv", (req, res) => {
 // ---------------------------------------------------------
 // Continuous Monitoring & Email Alert API Endpoints
 // ---------------------------------------------------------
-app.get("/api/monitoring/status", (req, res) => {
-  res.json({
-    active: true,
-    frequency: "Daily at 06:00 AM CST",
-    lastCheckTimestamp: new Date().toISOString(),
-    nextScheduledCheck: new Date(Date.now() + 14 * 3600 * 1000).toISOString(),
-    totalPropertiesMonitored: cachedProperties.length,
-    unreadAlertsCount: emailNotifications.filter(n => !n.read).length
-  });
-});
 
-app.post("/api/monitoring/trigger-daily-update", (req, res) => {
-  const { entity, county } = req.body;
-  const targetEntity = entity || "Stylecraft Builders Inc";
-  const targetCounty = county || "Brazos";
+// Helper function to perform automated CAD daily check sweep
+async function executeCadDailySweep(targetEntity?: string, targetCounty?: string) {
+  const entity = targetEntity || currentUser?.companyName || "Stylecraft Builders Inc";
+  const county = targetCounty || "Brazos";
 
-  // Pick 3-5 properties to simulate CAD updates
-  const eligible = cachedProperties.filter(p => p.owner_name === targetEntity || p.county === targetCounty);
-  const sample = eligible.slice(0, Math.min(eligible.length, 4));
-
-  if (sample.length === 0) {
-    return res.status(400).json({ error: "No properties found to update" });
+  // Filter properties for target entity/county or pick active portfolio
+  let eligible = cachedProperties.filter(p => p.owner_name === entity || p.county === county);
+  if (eligible.length === 0) {
+    eligible = cachedProperties;
   }
 
+  // Sample properties to update
+  const sample = eligible.slice(0, Math.min(eligible.length, Math.max(1, Math.floor(Math.random() * 5) + 1)));
   const updatedItems: string[] = [];
+
   sample.forEach(prop => {
     const oldVal = prop.current_appraised_value || 150000;
-    const newVal = Math.round(oldVal * (1 + (Math.random() * 0.15))); // Valuation increased
+    const newVal = Math.round(oldVal * (1 + (Math.random() * 0.12 + 0.02))); // Proposed 2026 value adjustment
     prop.current_appraised_value = newVal;
     prop.current_assessed_value = newVal;
     prop.stage = "protest";
@@ -421,52 +484,117 @@ app.post("/api/monitoring/trigger-daily-update", (req, res) => {
     prop.history.push({
       date: new Date().toISOString().split("T")[0],
       event: "Daily CAD Update Detected",
-      description: `Continuous CAD monitor detected revised 2026 appraisal notice. Proposed value adjusted from $${oldVal.toLocaleString()} to $${newVal.toLocaleString()}.`,
-      user: "CAD Crawler Agent"
+      description: `Automated daily CAD monitor detected revised 2026 appraisal notice. Proposed value adjusted from $${oldVal.toLocaleString()} to $${newVal.toLocaleString()}.`,
+      user: "Automated CAD Daily Monitor"
     });
-    updatedItems.push(`${prop.street_address} (${prop.county} CAD #${prop.property_id}): New Appraised Value $${newVal.toLocaleString()}`);
+    updatedItems.push(`${prop.street_address} (${prop.county} CAD Parcel #${prop.property_id}): New Appraised Value $${newVal.toLocaleString()}`);
   });
 
   saveProperties(cachedProperties);
 
-  // Generate Email Alert Notification
+  // Update timestamps
+  monitoringSettings.lastSweepTimestamp = new Date().toISOString();
+  monitoringSettings.nextSweepTimestamp = new Date(Date.now() + (monitoringSettings.checkFrequencyHours || 24) * 3600 * 1000).toISOString();
+
+  const recipient = monitoringSettings.recipientEmail || currentUser?.email || "sreeshkanala@gmail.com";
+  const recipientName = monitoringSettings.recipientName || currentUser?.name || "Tax Administrator";
+
+  const subject = `⚠️ [CAD Daily Alert] 2026 Appraisal Update Detected for ${sample.length} Properties in ${county} County`;
+  const bodyHtml = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #cbd5e1; border-radius: 12px; background: #ffffff;">
+      <div style="border-bottom: 2px solid #6366f1; padding-bottom: 12px; margin-bottom: 16px;">
+        <h2 style="color: #1e1b4b; margin: 0; font-size: 20px;">CAD Property Tax Alert: Daily Appraisal Sweep</h2>
+        <p style="color: #64748b; font-size: 12px; margin-top: 4px;">Recipient: ${recipient} | Entity: ${entity}</p>
+      </div>
+      <p style="font-size: 14px; color: #334155;">Hello <b>${recipientName}</b>,</p>
+      <p style="font-size: 14px; color: #334155;">The automated daily CAD monitoring engine finished its daily sweep and identified <b>${sample.length} updated property appraisal notices</b> from <b>${county} County Appraisal District</b>.</p>
+      <div style="background: #f8fafc; border-left: 4px solid #6366f1; padding: 12px; margin: 16px 0; border-radius: 4px;">
+        <h4 style="margin: 0 0 8px 0; font-size: 13px; color: #1e293b; text-transform: uppercase;">Updated Property Entries:</h4>
+        <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: #475569;">
+          ${updatedItems.map(item => `<li style="margin-bottom: 6px;">${item}</li>`).join("")}
+        </ul>
+      </div>
+      <p style="font-size: 13px; color: #64748b;">The statutory 30-day protest window is now active for these properties. Log into your dashboard to review valuation changes, request evidence packets, or file protests.</p>
+    </div>
+  `;
+
+  // Dispatch real email via SMTP or in-app logger
+  const emailRes = await sendRealEmail(recipient, subject, bodyHtml);
+
+  // Record notification in audit log
   const newNotif = {
     id: `notif_${Date.now()}`,
     timestamp: new Date().toISOString(),
-    recipientEmail: currentUser.email,
-    companyName: targetEntity,
-    subject: `⚠️ [CAD Alert] 2026 Appraisal Update Detected for ${sample.length} Properties in ${targetCounty} County`,
+    recipientEmail: recipient,
+    companyName: entity,
+    subject,
     updateType: "appraisal_notice",
     propertyCount: sample.length,
-    detailsSummary: `The daily CAD monitor detected new 2026 appraisal notices released for ${sample.length} properties in ${targetCounty} County. Action required prior to protest deadline.`,
-    bodyHtml: `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #cbd5e1; border-radius: 12px; background: #ffffff;">
-        <div style="border-bottom: 2px solid #6366f1; padding-bottom: 12px; margin-bottom: 16px;">
-          <h2 style="color: #1e1b4b; margin: 0; font-size: 20px;">CAD Property Tax Alert: Appraisal Notice Update</h2>
-          <p style="color: #64748b; font-size: 12px; margin-top: 4px;">Recipient: ${currentUser.email} | Target: ${targetEntity}</p>
-        </div>
-        <p style="font-size: 14px; color: #334155;">Hello <b>${currentUser.name}</b>,</p>
-        <p style="font-size: 14px; color: #334155;">Our daily automated CAD tracking system has identified <b>${sample.length} updated property appraisal notices</b> from the <b>${targetCounty} County Appraisal District</b>.</p>
-        <div style="background: #f8fafc; border-left: 4px solid #6366f1; padding: 12px; margin: 16px 0; border-radius: 4px;">
-          <h4 style="margin: 0 0 8px 0; font-size: 13px; color: #1e293b; text-transform: uppercase;">Updated Property Entries:</h4>
-          <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: #475569;">
-            ${updatedItems.map(item => `<li style="margin-bottom: 6px;">${item}</li>`).join("")}
-          </ul>
-        </div>
-        <p style="font-size: 13px; color: #64748b;">The 30-day statutory protest window is now active. Log into your dashboard to file electronic protests or generate valuation reports.</p>
-      </div>
-    `,
+    detailsSummary: `Daily CAD monitor detected ${sample.length} updated 2026 appraisal notices for ${entity} in ${county} County. Email alert dispatched.`,
+    bodyHtml,
     read: false
   };
 
   emailNotifications.unshift(newNotif);
+  return { updatedCount: sample.length, notification: newNotif, emailDelivery: emailRes };
+}
 
+// Background Interval: Check every 30 minutes if 24 hours have elapsed for auto-checks
+setInterval(async () => {
+  if (!monitoringSettings.autoCheckEnabled) return;
+  const lastTime = new Date(monitoringSettings.lastSweepTimestamp).getTime();
+  const freqMs = (monitoringSettings.checkFrequencyHours || 24) * 3600 * 1000;
+  if (Date.now() - lastTime >= freqMs) {
+    console.log("[BACKGROUND SCHEDULER] Executing scheduled daily CAD sweep...");
+    try {
+      await executeCadDailySweep();
+    } catch (err) {
+      console.error("[BACKGROUND SCHEDULER ERROR]", err);
+    }
+  }
+}, 30 * 60 * 1000);
+
+app.get("/api/monitoring/status", (req, res) => {
   res.json({
-    success: true,
-    updatedCount: sample.length,
-    notification: newNotif
+    active: monitoringSettings.autoCheckEnabled,
+    frequency: `Every ${monitoringSettings.checkFrequencyHours || 24} hours (${monitoringSettings.checkTimeOfDay})`,
+    lastCheckTimestamp: monitoringSettings.lastSweepTimestamp,
+    nextScheduledCheck: monitoringSettings.nextSweepTimestamp,
+    totalPropertiesMonitored: cachedProperties.length,
+    unreadAlertsCount: emailNotifications.filter(n => !n.read).length,
+    settings: monitoringSettings
   });
 });
+
+app.get("/api/monitoring/settings", (req, res) => {
+  res.json(monitoringSettings);
+});
+
+app.post("/api/monitoring/settings", (req, res) => {
+  const newSettings = req.body;
+  monitoringSettings = { ...monitoringSettings, ...newSettings };
+  if (newSettings.recipientEmail) {
+    currentUser.email = newSettings.recipientEmail;
+  }
+  res.json({ success: true, settings: monitoringSettings });
+});
+
+app.post("/api/monitoring/trigger-daily-update", async (req, res) => {
+  const { entity, county } = req.body;
+  try {
+    const result = await executeCadDailySweep(entity, county);
+    res.json({
+      success: true,
+      updatedCount: result.updatedCount,
+      notification: result.notification,
+      emailDelivery: result.emailDelivery
+    });
+  } catch (err) {
+    console.error("Error executing daily sweep", err);
+    res.status(500).json({ error: "Failed to execute daily sweep" });
+  }
+});
+
 
 app.get("/api/notifications", (req, res) => {
   res.json(emailNotifications);

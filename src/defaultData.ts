@@ -1,9 +1,24 @@
 import initialPropertiesJson from "../data/properties.json";
-import { PropertyTaxRecord, UserProfile, CompanyPortfolio, EmailNotification } from "./propertyTypes";
+import { PropertyTaxRecord, UserProfile, CompanyPortfolio, EmailNotification, MonitoringSettings } from "./propertyTypes";
 
 export const initialProperties: PropertyTaxRecord[] = initialPropertiesJson as PropertyTaxRecord[];
 
+export const defaultMonitoringSettings: MonitoringSettings = {
+  autoCheckEnabled: true,
+  checkFrequencyHours: 24,
+  checkTimeOfDay: "06:00 AM CST",
+  recipientEmail: "sreeshkanala@gmail.com",
+  recipientName: "Sreesh Kanala",
+  notifyOnAppraisalNotice: true,
+  notifyOnValuationIncrease: true,
+  notifyOnProtestDeadline: true,
+  notifyOnTaxBill: true,
+  lastSweepTimestamp: new Date().toISOString(),
+  nextSweepTimestamp: new Date(Date.now() + 24 * 3600 * 1000).toISOString()
+};
+
 export const defaultUser: UserProfile = {
+
   id: "usr_101",
   email: "sreeshkanala@gmail.com",
   name: "Sreesh Kanala",

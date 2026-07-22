@@ -118,3 +118,22 @@ export interface DashboardMetrics {
   totalTaxUnpaid: number;
   estimatedSavings: number; // Protest savings
 }
+
+export interface MonitoringSettings {
+  autoCheckEnabled: boolean;
+  checkFrequencyHours: number;
+  checkTimeOfDay: string;
+  recipientEmail: string;
+  recipientName: string;
+  smtpHost?: string;
+  smtpPort?: number;
+  smtpUser?: string;
+  smtpPass?: string;
+  notifyOnAppraisalNotice: boolean;
+  notifyOnValuationIncrease: boolean;
+  notifyOnProtestDeadline: boolean;
+  notifyOnTaxBill: boolean;
+  lastSweepTimestamp: string;
+  nextSweepTimestamp: string;
+}
+
