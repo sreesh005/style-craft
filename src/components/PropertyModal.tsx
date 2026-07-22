@@ -60,10 +60,10 @@ export function PropertyModal({ property, isOpen, onClose, onUpdate, onFileProte
 
   const currentAppraised = property.current_appraised_value || 0;
   const currentAssessed = property.current_assessed_value || 0;
-  const priorAppraised = property.prior_appraised_value;
-  const priorAssessed = property.prior_assessed_value;
-  const valueIncrease = currentAppraised ? currentAppraised - priorAppraised : 0;
-  const valueIncreasePct = currentAppraised ? (valueIncrease / priorAppraised) * 100 : 0;
+  const priorAppraised = property.prior_appraised_value || 0;
+  const priorAssessed = property.prior_assessed_value || 0;
+  const valueIncrease = currentAppraised && priorAppraised ? currentAppraised - priorAppraised : 0;
+  const valueIncreasePct = currentAppraised && priorAppraised ? (valueIncrease / priorAppraised) * 100 : 0;
 
   return (
     <div id="property-modal-overlay" className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4 overflow-y-auto">
@@ -283,7 +283,7 @@ export function PropertyModal({ property, isOpen, onClose, onUpdate, onFileProte
                 </h4>
                 
                 <div className="flex-1 space-y-4 max-h-[350px] overflow-y-auto pr-1">
-                  {property.history.map((event, idx) => (
+                  {(property.history || []).map((event, idx) => (
                     <div key={idx} className="relative pl-5 border-l border-slate-200 pb-1">
                       {/* Timeline dot */}
                       <span className="absolute left-[-4.5px] top-1.5 h-2 w-2 rounded-full bg-indigo-600 ring-4 ring-indigo-50" />

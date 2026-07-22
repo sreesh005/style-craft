@@ -583,7 +583,17 @@ app.post("/api/properties/scrape", (req, res) => {
   const dateStr = new Date().toISOString().split("T")[0];
 
   // 1. Filter properties in rendering stage that can be updated to protest
-  const targets = cachedProperties.filter(p => p.county === county && p.owner_name === entity && p.stage === "rendering");
+  let targets = cachedProperties.filter(p => p.county === county && p.owner_name === entity && p.stage === "rendering");
+  if (targets.length === 0) {
+    targets = cachedProperties.filter(p => (p.county === county || p.owner_name === entity) && p.stage === "rendering");
+  }
+  if (targets.length === 0) {
+    targets = cachedProperties.filter(p => p.county === county || p.owner_name === entity);
+  }
+  if (targets.length === 0) {
+    targets = cachedProperties.slice(0, 10);
+  }
+
   const updateCount = Math.min(targets.length, Math.floor(3 + Math.random() * 5)); // Update 3-7 items
   const targetIds = targets.slice(0, updateCount).map(p => p.id);
 
@@ -592,14 +602,16 @@ app.post("/api/properties/scrape", (req, res) => {
   cachedProperties = cachedProperties.map(prop => {
     if (targetIds.includes(prop.id)) {
       propertiesUpdated++;
-      const currentVal = Math.round(150000 + Math.random() * 150000);
+      const priorVal = prop.prior_appraised_value || 150000;
+      const currentVal = Math.round(priorVal * (1.1 + Math.random() * 0.25));
+      const history = Array.isArray(prop.history) ? prop.history : [];
       
       const updatedHistory = [
-        ...prop.history,
+        ...history,
         {
           date: dateStr,
           event: "Appraisal Notice Harvested",
-          description: `CAD Portal Scraper successfully parsed 2026 Notice of Appraised Value. Current Year Appraised Value: $${currentVal.toLocaleString()}. Protest deadline set to 30 days from now.`,
+          description: `CAD Portal Scraper successfully parsed 2026 Notice of Appraised Value for ${prop.street_address || 'property'}. Current Year Appraised Value: $${currentVal.toLocaleString()}. Protest deadline set to 30 days from now.`,
           user: "CAD Scraper Pipeline"
         }
       ];

@@ -248,9 +248,11 @@ export function PropertyTable({ properties, stageFilter, onSelectProperty, onBul
                 const isSelected = selectedIds.includes(prop.id);
                 const canProtest = prop.status === "Appraisal Notice Issued";
                 const taxRate = prop.tax_rate ?? 2.0;
-                const projectedTax = prop.current_appraised_value 
-                  ? Math.round((prop.current_appraised_value * taxRate) / 100) 
-                  : Math.round((prop.prior_appraised_value * taxRate) / 100);
+                const priorVal = prop.prior_appraised_value || 0;
+                const currentVal = prop.current_appraised_value;
+                const projectedTax = currentVal 
+                  ? Math.round((currentVal * taxRate) / 100) 
+                  : Math.round((priorVal * taxRate) / 100);
 
                 return (
                   <tr 
@@ -267,25 +269,25 @@ export function PropertyTable({ properties, stageFilter, onSelectProperty, onBul
                         className="rounded text-indigo-600 focus:ring-indigo-500 disabled:opacity-30 disabled:cursor-not-allowed" 
                       />
                     </td>
-                    <td className="p-4 font-mono text-[11px] text-indigo-600">{prop.property_id}</td>
-                    <td className="p-4 truncate max-w-[150px]" title={prop.owner_name}>{prop.owner_name}</td>
-                    <td className="p-4 text-slate-500 font-bold">{prop.county}</td>
-                    <td className="p-4 truncate max-w-[180px]">{prop.street_address}</td>
-                    <td className="p-4 text-right text-slate-600">${prop.prior_appraised_value.toLocaleString()}</td>
+                    <td className="p-4 font-mono text-[11px] text-indigo-600">{prop.property_id || "N/A"}</td>
+                    <td className="p-4 truncate max-w-[150px]" title={prop.owner_name}>{prop.owner_name || "N/A"}</td>
+                    <td className="p-4 text-slate-500 font-bold">{prop.county || "Brazos"}</td>
+                    <td className="p-4 truncate max-w-[180px]">{prop.street_address || "N/A"}</td>
+                    <td className="p-4 text-right text-slate-600">${priorVal.toLocaleString()}</td>
                     <td className="p-4 text-right text-slate-900 font-bold">
-                      {prop.current_appraised_value ? `$${prop.current_appraised_value.toLocaleString()}` : <span className="text-slate-400 font-normal italic">—</span>}
+                      {currentVal ? `$${currentVal.toLocaleString()}` : <span className="text-slate-400 font-normal italic">—</span>}
                     </td>
                     <td className="p-4 text-right text-slate-500">{taxRate}%</td>
                     <td className="p-4 text-right text-slate-900 font-bold">${projectedTax.toLocaleString()}</td>
                     <td className="p-4">
                       <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md text-[10px] font-bold tracking-wide uppercase ${
-                        prop.status.includes("Paid") || prop.status.includes("Resolved")
+                        (prop.status || "").includes("Paid") || (prop.status || "").includes("Resolved")
                           ? "bg-emerald-50 text-emerald-700 border border-emerald-100"
-                          : prop.status.includes("Filed") || prop.status.includes("Scheduled")
+                          : (prop.status || "").includes("Filed") || (prop.status || "").includes("Scheduled")
                           ? "bg-indigo-50 text-indigo-700 border border-indigo-100"
                           : "bg-slate-100 text-slate-600 border border-slate-200"
                       }`}>
-                        {prop.status}
+                        {prop.status || "Pending"}
                       </span>
                     </td>
                     
