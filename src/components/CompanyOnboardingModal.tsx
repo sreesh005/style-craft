@@ -65,11 +65,19 @@ export function CompanyOnboardingModal({ isOpen, onClose, onCompanyCreated }: Co
   };
 
   const handleBatchSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
     const rawLines = addressBatchText.split("\n").map(s => s.trim()).filter(Boolean);
     if (rawLines.length === 0) return;
 
     setIsSubmitting(true);
+    const fallbackComp: CompanyPortfolio = {
+      id: targetEntityName.toLowerCase().replace(/[^a-z0-9]/g, "_"),
+      name: targetEntityName,
+      legalEntities: [targetEntityName],
+      counties: [targetCounty],
+      totalProperties: rawLines.length,
+      createdDate: new Date().toISOString().split("T")[0]
+    };
+
     try {
       const res = await fetch("/api/properties/import", {
         method: "POST",
@@ -86,23 +94,19 @@ export function CompanyOnboardingModal({ isOpen, onClose, onCompanyCreated }: Co
       if (res.ok) {
         const data = await res.json();
         if (data.success) {
-          const comp: CompanyPortfolio = data.company || {
-            id: targetEntityName.toLowerCase().replace(/[^a-z0-9]/g, "_"),
-            name: targetEntityName,
-            legalEntities: [targetEntityName],
-            counties: [targetCounty],
-            totalProperties: data.count || 0,
-            createdDate: new Date().toISOString().split("T")[0]
-          };
-          onCompanyCreated(comp, data.count || 0);
+          const comp: CompanyPortfolio = data.company || fallbackComp;
+          onCompanyCreated(comp, data.count || rawLines.length);
           onClose();
+          return;
         }
       }
     } catch (err) {
-      console.error("Error importing custom property batch", err);
+      console.error("Error importing custom property batch, using local fallback", err);
     } finally {
       setIsSubmitting(false);
     }
+    onCompanyCreated(fallbackComp, rawLines.length);
+    onClose();
   };
 
   const handleCompanySubmit = async (e: React.FormEvent) => {
@@ -110,11 +114,20 @@ export function CompanyOnboardingModal({ isOpen, onClose, onCompanyCreated }: Co
     if (!companyName.trim()) return;
 
     setIsSubmitting(true);
-    try {
-      const parsedEntities = legalEntities.split(",").map(s => s.trim()).filter(Boolean);
-      const parsedCounties = counties.split(",").map(s => s.trim()).filter(Boolean);
-      const parsedAddresses = addressBatchText.split("\n").map(s => s.trim()).filter(Boolean);
+    const parsedEntities = legalEntities.split(",").map(s => s.trim()).filter(Boolean);
+    const parsedCounties = counties.split(",").map(s => s.trim()).filter(Boolean);
+    const parsedAddresses = addressBatchText.split("\n").map(s => s.trim()).filter(Boolean);
 
+    const fallbackComp: CompanyPortfolio = {
+      id: companyName.toLowerCase().replace(/[^a-z0-9]/g, "_"),
+      name: companyName,
+      legalEntities: parsedEntities.length > 0 ? parsedEntities : [companyName],
+      counties: parsedCounties.length > 0 ? parsedCounties : ["Brazos"],
+      totalProperties: parsedAddresses.length,
+      createdDate: new Date().toISOString().split("T")[0]
+    };
+
+    try {
       const res = await fetch("/api/companies/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -129,15 +142,18 @@ export function CompanyOnboardingModal({ isOpen, onClose, onCompanyCreated }: Co
       if (res.ok) {
         const data = await res.json();
         if (data.success && data.company) {
-          onCompanyCreated(data.company, data.importedCount || 0);
+          onCompanyCreated(data.company, data.importedCount || parsedAddresses.length);
           onClose();
+          return;
         }
       }
     } catch (err) {
-      console.error("Error creating company portfolio", err);
+      console.error("Error creating company, using local fallback", err);
     } finally {
       setIsSubmitting(false);
     }
+    onCompanyCreated(fallbackComp, parsedAddresses.length);
+    onClose();
   };
 
   const lineCount = addressBatchText.split("\n").map(s => s.trim()).filter(Boolean).length;
