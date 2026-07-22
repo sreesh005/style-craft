@@ -1,5 +1,236 @@
 [
   {
+    "id": "prop_imp_1784742861097_6_16",
+    "property_id": "570217",
+    "geo_id": "77800-2006-106",
+    "owner_name": "Lennar Texas LP",
+    "county": "Brazos",
+    "legal_description": "LOT 7, BLOCK 2, LENNAR TEXAS LP PH 1",
+    "street_address": "CAD PARCEL #720491",
+    "situs_city": "College Station",
+    "situs_zip": "77845",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
+    "prior_appraised_value": 39788,
+    "prior_assessed_value": 39788,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 322553,
+    "current_assessed_value": 322553,
+    "tax_amount_due": 6935,
+    "payment_status": "unpaid",
+    "acres": 0.18,
+    "year_built": 2026,
+    "is_under_construction": true,
+    "tax_rate": 2.15,
+    "history": [
+      {
+        "date": "2026-07-22",
+        "event": "Address / Entity Ingested",
+        "description": "Custom property entry ingested into continuous CAD appraisal harvest pipeline for Lennar Texas LP.",
+        "user": "SreeshReddy Kanala"
+      }
+    ]
+  },
+  {
+    "id": "prop_imp_1784742861097_5_26",
+    "property_id": "340040",
+    "geo_id": "77800-2005-105",
+    "owner_name": "Lennar Texas LP",
+    "county": "Brazos",
+    "legal_description": "LOT 6, BLOCK 2, LENNAR TEXAS LP PH 1",
+    "street_address": "CAD PARCEL #482910",
+    "situs_city": "College Station",
+    "situs_zip": "77845",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
+    "prior_appraised_value": 53732,
+    "prior_assessed_value": 53732,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 224758,
+    "current_assessed_value": 224758,
+    "tax_amount_due": 4832,
+    "payment_status": "unpaid",
+    "acres": 0.18,
+    "year_built": 2026,
+    "is_under_construction": true,
+    "tax_rate": 2.15,
+    "history": [
+      {
+        "date": "2026-07-22",
+        "event": "Address / Entity Ingested",
+        "description": "Custom property entry ingested into continuous CAD appraisal harvest pipeline for Lennar Texas LP.",
+        "user": "SreeshReddy Kanala"
+      }
+    ]
+  },
+  {
+    "id": "prop_imp_1784742861097_4_899",
+    "property_id": "345781",
+    "geo_id": "77800-2004-104",
+    "owner_name": "Lennar Texas LP",
+    "county": "Brazos",
+    "legal_description": "LOT 5, BLOCK 1, LENNAR TEXAS LP PH 1",
+    "street_address": "504 SEYMOUR DR",
+    "situs_city": "College Station",
+    "situs_zip": "77845",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
+    "prior_appraised_value": 58512,
+    "prior_assessed_value": 58512,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 293733,
+    "current_assessed_value": 293733,
+    "tax_amount_due": 6315,
+    "payment_status": "unpaid",
+    "acres": 0.18,
+    "year_built": 2026,
+    "is_under_construction": true,
+    "tax_rate": 2.15,
+    "history": [
+      {
+        "date": "2026-07-22",
+        "event": "Address / Entity Ingested",
+        "description": "Custom property entry ingested into continuous CAD appraisal harvest pipeline for Lennar Texas LP.",
+        "user": "SreeshReddy Kanala"
+      }
+    ]
+  },
+  {
+    "id": "prop_imp_1784742861096_3_587",
+    "property_id": "360759",
+    "geo_id": "77800-2003-103",
+    "owner_name": "Lennar Texas LP",
+    "county": "Brazos",
+    "legal_description": "LOT 4, BLOCK 1, LENNAR TEXAS LP PH 1",
+    "street_address": "3310 TIMBER RIDGE WAY",
+    "situs_city": "College Station",
+    "situs_zip": "77845",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
+    "prior_appraised_value": 37278,
+    "prior_assessed_value": 37278,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 220423,
+    "current_assessed_value": 220423,
+    "tax_amount_due": 4739,
+    "payment_status": "unpaid",
+    "acres": 0.18,
+    "year_built": 2026,
+    "is_under_construction": true,
+    "tax_rate": 2.15,
+    "history": [
+      {
+        "date": "2026-07-22",
+        "event": "Address / Entity Ingested",
+        "description": "Custom property entry ingested into continuous CAD appraisal harvest pipeline for Lennar Texas LP.",
+        "user": "SreeshReddy Kanala"
+      }
+    ]
+  },
+  {
+    "id": "prop_imp_1784742861096_2_89",
+    "property_id": "876476",
+    "geo_id": "77800-2002-102",
+    "owner_name": "Lennar Texas LP",
+    "county": "Brazos",
+    "legal_description": "LOT 3, BLOCK 1, LENNAR TEXAS LP PH 1",
+    "street_address": "920 COTTONWOOD CT",
+    "situs_city": "College Station",
+    "situs_zip": "77845",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
+    "prior_appraised_value": 35304,
+    "prior_assessed_value": 35304,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 213266,
+    "current_assessed_value": 213266,
+    "tax_amount_due": 4585,
+    "payment_status": "unpaid",
+    "acres": 0.18,
+    "year_built": 2026,
+    "is_under_construction": true,
+    "tax_rate": 2.15,
+    "history": [
+      {
+        "date": "2026-07-22",
+        "event": "Address / Entity Ingested",
+        "description": "Custom property entry ingested into continuous CAD appraisal harvest pipeline for Lennar Texas LP.",
+        "user": "SreeshReddy Kanala"
+      }
+    ]
+  },
+  {
+    "id": "prop_imp_1784742861096_1_775",
+    "property_id": "431901",
+    "geo_id": "77800-2001-101",
+    "owner_name": "Lennar Texas LP",
+    "county": "Brazos",
+    "legal_description": "LOT 2, BLOCK 1, LENNAR TEXAS LP PH 1",
+    "street_address": "1805 CRESTVIEW AVE",
+    "situs_city": "College Station",
+    "situs_zip": "77845",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
+    "prior_appraised_value": 38797,
+    "prior_assessed_value": 38797,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 315294,
+    "current_assessed_value": 315294,
+    "tax_amount_due": 6779,
+    "payment_status": "unpaid",
+    "acres": 0.18,
+    "year_built": 2026,
+    "is_under_construction": true,
+    "tax_rate": 2.15,
+    "history": [
+      {
+        "date": "2026-07-22",
+        "event": "Address / Entity Ingested",
+        "description": "Custom property entry ingested into continuous CAD appraisal harvest pipeline for Lennar Texas LP.",
+        "user": "SreeshReddy Kanala"
+      }
+    ]
+  },
+  {
+    "id": "prop_imp_1784742861096_0_730",
+    "property_id": "572938",
+    "geo_id": "77800-2000-100",
+    "owner_name": "Lennar Texas LP",
+    "county": "Brazos",
+    "legal_description": "LOT 1, BLOCK 1, LENNAR TEXAS LP PH 1",
+    "street_address": "4102 PINE TRACE DR",
+    "situs_city": "College Station",
+    "situs_zip": "77845",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
+    "prior_appraised_value": 52790,
+    "prior_assessed_value": 52790,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 315783,
+    "current_assessed_value": 315783,
+    "tax_amount_due": 6789,
+    "payment_status": "unpaid",
+    "acres": 0.18,
+    "year_built": 2026,
+    "is_under_construction": true,
+    "tax_rate": 2.15,
+    "history": [
+      {
+        "date": "2026-07-22",
+        "event": "Address / Entity Ingested",
+        "description": "Custom property entry ingested into continuous CAD appraisal harvest pipeline for Lennar Texas LP.",
+        "user": "SreeshReddy Kanala"
+      }
+    ]
+  },
+  {
     "id": "prop_imp_1784739696078_4_260",
     "property_id": "498814",
     "geo_id": "77800-2004-104",
@@ -26993,7 +27224,7 @@
     "situs_city": "Caldwell",
     "situs_zip": "77836",
     "stage": "protest",
-    "status": "Appraisal Notice Issued",
+    "status": "Protest Filed",
     "prior_appraised_value": 32978,
     "prior_assessed_value": 32978,
     "notice_date": "2026-07-22",
@@ -27005,7 +27236,7 @@
     "acres": 0.318,
     "year_built": 2026,
     "is_under_construction": true,
-    "protest_filed_date": null,
+    "protest_filed_date": "2026-07-22",
     "protest_outcome_value": null,
     "tax_rate": 1.85,
     "history": [
@@ -27026,8 +27257,21 @@
         "event": "Appraisal Notice Harvested",
         "description": "CAD Portal Scraper successfully parsed 2026 Notice of Appraised Value for 5623 POST OAK ROAD. Current Year Appraised Value: $42,684. Protest deadline set to 30 days from now.",
         "user": "CAD Scraper Pipeline"
+      },
+      {
+        "date": "2026-07-22",
+        "event": "Protest Filed",
+        "description": "Electronic property tax protest filed contesting 2026 valuation of $42,684. Requested ARB review.",
+        "user": "Stacy Carter"
+      },
+      {
+        "date": "2026-07-22",
+        "event": "Property Updated",
+        "description": "Manual updates saved: street_address updated to \"5623 POST OAK ROAD\", situs_city updated to \"Caldwell\", situs_zip updated to \"77836\", legal_description updated to \"FALCON POINT ESTS SEC 3, BLOCK 2, LOT 3, ACRES 0.318\", prior_appraised_value updated to 32978, prior_assessed_value updated to 32978, current_appraised_value updated to 42684, current_assessed_value updated to 42684, notes updated to \"\".",
+        "user": "Stacy Carter"
       }
-    ]
+    ],
+    "notes": ""
   },
   {
     "id": "prop_568",
