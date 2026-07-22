@@ -1,5 +1,170 @@
 [
   {
+    "id": "prop_custom_1784737790964_4",
+    "property_id": "350663",
+    "geo_id": "77800-1004-104",
+    "owner_name": "Pulte Homes Texas LLC",
+    "county": "Brazos",
+    "legal_description": "LOT 5, BLOCK 1, PULTE HOLMES ESTATES PH 1",
+    "street_address": "4133 STONEGATE",
+    "situs_city": "Bryan",
+    "situs_zip": "77802",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
+    "prior_appraised_value": 43460,
+    "prior_assessed_value": 43460,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 217899,
+    "current_assessed_value": 217899,
+    "tax_amount_due": 4685,
+    "payment_status": "unpaid",
+    "acres": 0.18,
+    "year_built": 2026,
+    "is_under_construction": true,
+    "tax_rate": 2.15,
+    "history": [
+      {
+        "date": "2026-07-22",
+        "event": "Property Onboarded",
+        "description": "Property address ingested for Pulte Holmes continuous CAD monitoring pipeline.",
+        "user": "Sreesh Kanala"
+      }
+    ]
+  },
+  {
+    "id": "prop_custom_1784737790964_3",
+    "property_id": "220616",
+    "geo_id": "77800-1003-103",
+    "owner_name": "Pulte Homes Texas LLC",
+    "county": "Brazos",
+    "legal_description": "LOT 4, BLOCK 1, PULTE HOLMES ESTATES PH 1",
+    "street_address": "5226 DEER CREEK TRAIL",
+    "situs_city": "Bryan",
+    "situs_zip": "77802",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
+    "prior_appraised_value": 51662,
+    "prior_assessed_value": 51662,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 218062,
+    "current_assessed_value": 218062,
+    "tax_amount_due": 4688,
+    "payment_status": "unpaid",
+    "acres": 0.18,
+    "year_built": 2026,
+    "is_under_construction": true,
+    "tax_rate": 2.15,
+    "history": [
+      {
+        "date": "2026-07-22",
+        "event": "Property Onboarded",
+        "description": "Property address ingested for Pulte Holmes continuous CAD monitoring pipeline.",
+        "user": "Sreesh Kanala"
+      }
+    ]
+  },
+  {
+    "id": "prop_custom_1784737790964_2",
+    "property_id": "270697",
+    "geo_id": "77800-1002-102",
+    "owner_name": "Pulte Homes Texas LLC",
+    "county": "Brazos",
+    "legal_description": "LOT 3, BLOCK 1, PULTE HOLMES ESTATES PH 1",
+    "street_address": "1402 SEYMOUR DR",
+    "situs_city": "Bryan",
+    "situs_zip": "77802",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
+    "prior_appraised_value": 45112,
+    "prior_assessed_value": 45112,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 240084,
+    "current_assessed_value": 240084,
+    "tax_amount_due": 5162,
+    "payment_status": "unpaid",
+    "acres": 0.18,
+    "year_built": 2026,
+    "is_under_construction": true,
+    "tax_rate": 2.15,
+    "history": [
+      {
+        "date": "2026-07-22",
+        "event": "Property Onboarded",
+        "description": "Property address ingested for Pulte Holmes continuous CAD monitoring pipeline.",
+        "user": "Sreesh Kanala"
+      }
+    ]
+  },
+  {
+    "id": "prop_custom_1784737790964_1",
+    "property_id": "206192",
+    "geo_id": "77800-1001-101",
+    "owner_name": "Pulte Homes Texas LLC",
+    "county": "Brazos",
+    "legal_description": "LOT 2, BLOCK 1, PULTE HOLMES ESTATES PH 1",
+    "street_address": "809 VILLAGE LN",
+    "situs_city": "Bryan",
+    "situs_zip": "77802",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
+    "prior_appraised_value": 54813,
+    "prior_assessed_value": 54813,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 229753,
+    "current_assessed_value": 229753,
+    "tax_amount_due": 4940,
+    "payment_status": "unpaid",
+    "acres": 0.18,
+    "year_built": 2026,
+    "is_under_construction": true,
+    "tax_rate": 2.15,
+    "history": [
+      {
+        "date": "2026-07-22",
+        "event": "Property Onboarded",
+        "description": "Property address ingested for Pulte Holmes continuous CAD monitoring pipeline.",
+        "user": "Sreesh Kanala"
+      }
+    ]
+  },
+  {
+    "id": "prop_custom_1784737790964_0",
+    "property_id": "430974",
+    "geo_id": "77800-1000-100",
+    "owner_name": "Pulte Homes Texas LLC",
+    "county": "Brazos",
+    "legal_description": "LOT 1, BLOCK 1, PULTE HOLMES ESTATES PH 1",
+    "street_address": "1204 COPPERFIELD PKWY",
+    "situs_city": "Bryan",
+    "situs_zip": "77802",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
+    "prior_appraised_value": 55806,
+    "prior_assessed_value": 55806,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 205892,
+    "current_assessed_value": 205892,
+    "tax_amount_due": 4427,
+    "payment_status": "unpaid",
+    "acres": 0.18,
+    "year_built": 2026,
+    "is_under_construction": true,
+    "tax_rate": 2.15,
+    "history": [
+      {
+        "date": "2026-07-22",
+        "event": "Property Onboarded",
+        "description": "Property address ingested for Pulte Holmes continuous CAD monitoring pipeline.",
+        "user": "Sreesh Kanala"
+      }
+    ]
+  },
+  {
     "id": "prop_1",
     "property_id": "130101",
     "geo_id": "704889-6719-0257",
@@ -15,8 +180,8 @@
     "prior_assessed_value": 30342,
     "notice_date": "2026-07-22",
     "protest_deadline": "2026-08-21",
-    "current_appraised_value": 190361,
-    "current_assessed_value": 190361,
+    "current_appraised_value": 218235,
+    "current_assessed_value": 218235,
     "tax_amount_due": null,
     "payment_status": null,
     "acres": 0.342,
@@ -55,6 +220,12 @@
         "event": "Daily CAD Update Detected",
         "description": "Continuous CAD monitor detected revised 2026 appraisal notice. Proposed value adjusted from $175,475 to $190,361.",
         "user": "CAD Crawler Agent"
+      },
+      {
+        "date": "2026-07-22",
+        "event": "Daily CAD Update Detected",
+        "description": "Continuous CAD monitor detected revised 2026 appraisal notice. Proposed value adjusted from $190,361 to $218,235.",
+        "user": "CAD Crawler Agent"
       }
     ]
   },
@@ -74,8 +245,8 @@
     "prior_assessed_value": 50552,
     "notice_date": "2026-07-22",
     "protest_deadline": "2026-08-21",
-    "current_appraised_value": 275927,
-    "current_assessed_value": 275927,
+    "current_appraised_value": 293595,
+    "current_assessed_value": 293595,
     "tax_amount_due": 4574,
     "payment_status": "paid",
     "acres": 0.355,
@@ -120,6 +291,12 @@
         "event": "Daily CAD Update Detected",
         "description": "Continuous CAD monitor detected revised 2026 appraisal notice. Proposed value adjusted from $270,455 to $275,927.",
         "user": "CAD Crawler Agent"
+      },
+      {
+        "date": "2026-07-22",
+        "event": "Daily CAD Update Detected",
+        "description": "Continuous CAD monitor detected revised 2026 appraisal notice. Proposed value adjusted from $275,927 to $293,595.",
+        "user": "CAD Crawler Agent"
       }
     ]
   },
@@ -139,8 +316,8 @@
     "prior_assessed_value": 45512,
     "notice_date": "2026-07-22",
     "protest_deadline": "2026-08-21",
-    "current_appraised_value": 182357,
-    "current_assessed_value": 182357,
+    "current_appraised_value": 184126,
+    "current_assessed_value": 184126,
     "tax_amount_due": null,
     "payment_status": null,
     "acres": 0.302,
@@ -173,6 +350,12 @@
         "event": "Daily CAD Update Detected",
         "description": "Continuous CAD monitor detected revised 2026 appraisal notice. Proposed value adjusted from $163,085 to $182,357.",
         "user": "CAD Crawler Agent"
+      },
+      {
+        "date": "2026-07-22",
+        "event": "Daily CAD Update Detected",
+        "description": "Continuous CAD monitor detected revised 2026 appraisal notice. Proposed value adjusted from $182,357 to $184,126.",
+        "user": "CAD Crawler Agent"
       }
     ]
   },
@@ -192,8 +375,8 @@
     "prior_assessed_value": 57646,
     "notice_date": "2026-07-22",
     "protest_deadline": "2026-08-21",
-    "current_appraised_value": 356190,
-    "current_assessed_value": 356190,
+    "current_appraised_value": 376006,
+    "current_assessed_value": 376006,
     "tax_amount_due": null,
     "payment_status": null,
     "acres": 0.34,
@@ -219,6 +402,12 @@
         "date": "2026-07-22",
         "event": "Daily CAD Update Detected",
         "description": "Continuous CAD monitor detected revised 2026 appraisal notice. Proposed value adjusted from $319,618 to $356,190.",
+        "user": "CAD Crawler Agent"
+      },
+      {
+        "date": "2026-07-22",
+        "event": "Daily CAD Update Detected",
+        "description": "Continuous CAD monitor detected revised 2026 appraisal notice. Proposed value adjusted from $356,190 to $376,006.",
         "user": "CAD Crawler Agent"
       }
     ]
@@ -286,14 +475,14 @@
     "street_address": "7416 BLUEBERRY HILL",
     "situs_city": "Conroe",
     "situs_zip": "77301",
-    "stage": "rendering",
-    "status": "Rendering Filed",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
     "prior_appraised_value": 35473,
     "prior_assessed_value": 35473,
-    "notice_date": null,
-    "protest_deadline": null,
-    "current_appraised_value": null,
-    "current_assessed_value": null,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 42959,
+    "current_assessed_value": 42959,
     "tax_amount_due": null,
     "payment_status": null,
     "acres": 0.271,
@@ -314,6 +503,12 @@
         "event": "CAD Review",
         "description": "County Appraisal District acknowledged rendering receipt. Awaiting mid-year physical appraisal of construction progress.",
         "user": "System"
+      },
+      {
+        "date": "2026-07-22",
+        "event": "Appraisal Notice Harvested",
+        "description": "CAD Portal Scraper successfully parsed 2026 Notice of Appraised Value for 7416 BLUEBERRY HILL. Current Year Appraised Value: $42,959. Protest deadline set to 30 days from now.",
+        "user": "CAD Scraper Pipeline"
       }
     ]
   },
@@ -427,14 +622,14 @@
     "street_address": "1963 SHADY GROVE",
     "situs_city": "Huntsville",
     "situs_zip": "77340",
-    "stage": "rendering",
-    "status": "Rendering Filed",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
     "prior_appraised_value": 50073,
     "prior_assessed_value": 50073,
-    "notice_date": null,
-    "protest_deadline": null,
-    "current_appraised_value": null,
-    "current_assessed_value": null,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 57410,
+    "current_assessed_value": 57410,
     "tax_amount_due": null,
     "payment_status": null,
     "acres": 0.267,
@@ -455,6 +650,12 @@
         "event": "CAD Review",
         "description": "County Appraisal District acknowledged rendering receipt. Awaiting mid-year physical appraisal of construction progress.",
         "user": "System"
+      },
+      {
+        "date": "2026-07-22",
+        "event": "Appraisal Notice Harvested",
+        "description": "CAD Portal Scraper successfully parsed 2026 Notice of Appraised Value for 1963 SHADY GROVE. Current Year Appraised Value: $57,410. Protest deadline set to 30 days from now.",
+        "user": "CAD Scraper Pipeline"
       }
     ]
   },
@@ -574,14 +775,14 @@
     "street_address": "930 FALCON POINT DR",
     "situs_city": "Caldwell",
     "situs_zip": "77836",
-    "stage": "rendering",
-    "status": "Rendering Filed",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
     "prior_appraised_value": 37886,
     "prior_assessed_value": 37886,
-    "notice_date": null,
-    "protest_deadline": null,
-    "current_appraised_value": null,
-    "current_assessed_value": null,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 42973,
+    "current_assessed_value": 42973,
     "tax_amount_due": null,
     "payment_status": null,
     "acres": 0.251,
@@ -602,6 +803,12 @@
         "event": "CAD Review",
         "description": "County Appraisal District acknowledged rendering receipt. Awaiting mid-year physical appraisal of construction progress.",
         "user": "System"
+      },
+      {
+        "date": "2026-07-22",
+        "event": "Appraisal Notice Harvested",
+        "description": "CAD Portal Scraper successfully parsed 2026 Notice of Appraised Value for 930 FALCON POINT DR. Current Year Appraised Value: $42,973. Protest deadline set to 30 days from now.",
+        "user": "CAD Scraper Pipeline"
       }
     ]
   },
@@ -715,14 +922,14 @@
     "street_address": "8280 CEDAR CREST",
     "situs_city": "Conroe",
     "situs_zip": "77301",
-    "stage": "rendering",
-    "status": "Rendering Filed",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
     "prior_appraised_value": 42573,
     "prior_assessed_value": 42573,
-    "notice_date": null,
-    "protest_deadline": null,
-    "current_appraised_value": null,
-    "current_assessed_value": null,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 53204,
+    "current_assessed_value": 53204,
     "tax_amount_due": null,
     "payment_status": null,
     "acres": 0.209,
@@ -743,6 +950,12 @@
         "event": "CAD Review",
         "description": "County Appraisal District acknowledged rendering receipt. Awaiting mid-year physical appraisal of construction progress.",
         "user": "System"
+      },
+      {
+        "date": "2026-07-22",
+        "event": "Appraisal Notice Harvested",
+        "description": "CAD Portal Scraper successfully parsed 2026 Notice of Appraised Value for 8280 CEDAR CREST. Current Year Appraised Value: $53,204. Protest deadline set to 30 days from now.",
+        "user": "CAD Scraper Pipeline"
       }
     ]
   },
@@ -838,14 +1051,14 @@
     "street_address": "4431 BROOKSIDE LANE",
     "situs_city": "Huntsville",
     "situs_zip": "77340",
-    "stage": "rendering",
-    "status": "Rendering Filed",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
     "prior_appraised_value": 50771,
     "prior_assessed_value": 50771,
-    "notice_date": null,
-    "protest_deadline": null,
-    "current_appraised_value": null,
-    "current_assessed_value": null,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 65277,
+    "current_assessed_value": 65277,
     "tax_amount_due": null,
     "payment_status": null,
     "acres": 0.274,
@@ -866,6 +1079,12 @@
         "event": "CAD Review",
         "description": "County Appraisal District acknowledged rendering receipt. Awaiting mid-year physical appraisal of construction progress.",
         "user": "System"
+      },
+      {
+        "date": "2026-07-22",
+        "event": "Appraisal Notice Harvested",
+        "description": "CAD Portal Scraper successfully parsed 2026 Notice of Appraised Value for 4431 BROOKSIDE LANE. Current Year Appraised Value: $65,277. Protest deadline set to 30 days from now.",
+        "user": "CAD Scraper Pipeline"
       }
     ]
   },
@@ -985,14 +1204,14 @@
     "street_address": "8242 WILLOW CREEK",
     "situs_city": "Huntsville",
     "situs_zip": "77340",
-    "stage": "rendering",
-    "status": "Rendering Filed",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
     "prior_appraised_value": 36198,
     "prior_assessed_value": 36198,
-    "notice_date": null,
-    "protest_deadline": null,
-    "current_appraised_value": null,
-    "current_assessed_value": null,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 42996,
+    "current_assessed_value": 42996,
     "tax_amount_due": null,
     "payment_status": null,
     "acres": 0.24,
@@ -1013,6 +1232,12 @@
         "event": "CAD Review",
         "description": "County Appraisal District acknowledged rendering receipt. Awaiting mid-year physical appraisal of construction progress.",
         "user": "System"
+      },
+      {
+        "date": "2026-07-22",
+        "event": "Appraisal Notice Harvested",
+        "description": "CAD Portal Scraper successfully parsed 2026 Notice of Appraised Value for 8242 WILLOW CREEK. Current Year Appraised Value: $42,996. Protest deadline set to 30 days from now.",
+        "user": "CAD Scraper Pipeline"
       }
     ]
   },
@@ -1132,14 +1357,14 @@
     "street_address": "3844 STONY BROOK",
     "situs_city": "Caldwell",
     "situs_zip": "77836",
-    "stage": "rendering",
-    "status": "Rendering Filed",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
     "prior_appraised_value": 32840,
     "prior_assessed_value": 32840,
-    "notice_date": null,
-    "protest_deadline": null,
-    "current_appraised_value": null,
-    "current_assessed_value": null,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 42353,
+    "current_assessed_value": 42353,
     "tax_amount_due": null,
     "payment_status": null,
     "acres": 0.277,
@@ -1160,6 +1385,12 @@
         "event": "CAD Review",
         "description": "County Appraisal District acknowledged rendering receipt. Awaiting mid-year physical appraisal of construction progress.",
         "user": "System"
+      },
+      {
+        "date": "2026-07-22",
+        "event": "Appraisal Notice Harvested",
+        "description": "CAD Portal Scraper successfully parsed 2026 Notice of Appraised Value for 3844 STONY BROOK. Current Year Appraised Value: $42,353. Protest deadline set to 30 days from now.",
+        "user": "CAD Scraper Pipeline"
       }
     ]
   },
@@ -1267,14 +1498,14 @@
     "street_address": "6123 MEADOW VIEW LANE",
     "situs_city": "Conroe",
     "situs_zip": "77301",
-    "stage": "rendering",
-    "status": "Rendering Filed",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
     "prior_appraised_value": 40562,
     "prior_assessed_value": 40562,
-    "notice_date": null,
-    "protest_deadline": null,
-    "current_appraised_value": null,
-    "current_assessed_value": null,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 47117,
+    "current_assessed_value": 47117,
     "tax_amount_due": null,
     "payment_status": null,
     "acres": 0.221,
@@ -1295,6 +1526,12 @@
         "event": "CAD Review",
         "description": "County Appraisal District acknowledged rendering receipt. Awaiting mid-year physical appraisal of construction progress.",
         "user": "System"
+      },
+      {
+        "date": "2026-07-22",
+        "event": "Appraisal Notice Harvested",
+        "description": "CAD Portal Scraper successfully parsed 2026 Notice of Appraised Value for 6123 MEADOW VIEW LANE. Current Year Appraised Value: $47,117. Protest deadline set to 30 days from now.",
+        "user": "CAD Scraper Pipeline"
       }
     ]
   },
@@ -1543,14 +1780,14 @@
     "street_address": "514 STONEGATE",
     "situs_city": "Brenham",
     "situs_zip": "77833",
-    "stage": "rendering",
-    "status": "Rendering Filed",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
     "prior_appraised_value": 49978,
     "prior_assessed_value": 49978,
-    "notice_date": null,
-    "protest_deadline": null,
-    "current_appraised_value": null,
-    "current_assessed_value": null,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 56440,
+    "current_assessed_value": 56440,
     "tax_amount_due": null,
     "payment_status": null,
     "acres": 0.225,
@@ -1571,6 +1808,12 @@
         "event": "CAD Review",
         "description": "County Appraisal District acknowledged rendering receipt. Awaiting mid-year physical appraisal of construction progress.",
         "user": "System"
+      },
+      {
+        "date": "2026-07-22",
+        "event": "Appraisal Notice Harvested",
+        "description": "CAD Portal Scraper successfully parsed 2026 Notice of Appraised Value for 514 STONEGATE. Current Year Appraised Value: $56,440. Protest deadline set to 30 days from now.",
+        "user": "CAD Scraper Pipeline"
       }
     ]
   },
@@ -1960,14 +2203,14 @@
     "street_address": "5004 WILDWOOD WAY",
     "situs_city": "Brenham",
     "situs_zip": "77833",
-    "stage": "rendering",
-    "status": "Rendering Filed",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
     "prior_appraised_value": 51378,
     "prior_assessed_value": 51378,
-    "notice_date": null,
-    "protest_deadline": null,
-    "current_appraised_value": null,
-    "current_assessed_value": null,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 66645,
+    "current_assessed_value": 66645,
     "tax_amount_due": null,
     "payment_status": null,
     "acres": 0.162,
@@ -1988,6 +2231,12 @@
         "event": "CAD Review",
         "description": "County Appraisal District acknowledged rendering receipt. Awaiting mid-year physical appraisal of construction progress.",
         "user": "System"
+      },
+      {
+        "date": "2026-07-22",
+        "event": "Appraisal Notice Harvested",
+        "description": "CAD Portal Scraper successfully parsed 2026 Notice of Appraised Value for 5004 WILDWOOD WAY. Current Year Appraised Value: $66,645. Protest deadline set to 30 days from now.",
+        "user": "CAD Scraper Pipeline"
       }
     ]
   },
@@ -2671,14 +2920,14 @@
     "street_address": "2269 BROOKSIDE LANE",
     "situs_city": "Brenham",
     "situs_zip": "77833",
-    "stage": "rendering",
-    "status": "Rendering Filed",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
     "prior_appraised_value": 47372,
     "prior_assessed_value": 47372,
-    "notice_date": null,
-    "protest_deadline": null,
-    "current_appraised_value": null,
-    "current_assessed_value": null,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 59650,
+    "current_assessed_value": 59650,
     "tax_amount_due": null,
     "payment_status": null,
     "acres": 0.126,
@@ -2699,6 +2948,12 @@
         "event": "CAD Review",
         "description": "County Appraisal District acknowledged rendering receipt. Awaiting mid-year physical appraisal of construction progress.",
         "user": "System"
+      },
+      {
+        "date": "2026-07-22",
+        "event": "Appraisal Notice Harvested",
+        "description": "CAD Portal Scraper successfully parsed 2026 Notice of Appraised Value for 2269 BROOKSIDE LANE. Current Year Appraised Value: $59,650. Protest deadline set to 30 days from now.",
+        "user": "CAD Scraper Pipeline"
       }
     ]
   },
@@ -5332,14 +5587,14 @@
     "street_address": "1887 GOLDEN OAK",
     "situs_city": "Brenham",
     "situs_zip": "77833",
-    "stage": "rendering",
-    "status": "Rendering Filed",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
     "prior_appraised_value": 60685,
     "prior_assessed_value": 60685,
-    "notice_date": null,
-    "protest_deadline": null,
-    "current_appraised_value": null,
-    "current_assessed_value": null,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 79194,
+    "current_assessed_value": 79194,
     "tax_amount_due": null,
     "payment_status": null,
     "acres": 0.218,
@@ -5360,6 +5615,12 @@
         "event": "CAD Review",
         "description": "County Appraisal District acknowledged rendering receipt. Awaiting mid-year physical appraisal of construction progress.",
         "user": "System"
+      },
+      {
+        "date": "2026-07-22",
+        "event": "Appraisal Notice Harvested",
+        "description": "CAD Portal Scraper successfully parsed 2026 Notice of Appraised Value for 1887 GOLDEN OAK. Current Year Appraised Value: $79,194. Protest deadline set to 30 days from now.",
+        "user": "CAD Scraper Pipeline"
       }
     ]
   },
@@ -5761,14 +6022,14 @@
     "street_address": "6330 GOLDEN OAK",
     "situs_city": "Brenham",
     "situs_zip": "77833",
-    "stage": "rendering",
-    "status": "Rendering Filed",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
     "prior_appraised_value": 38543,
     "prior_assessed_value": 38543,
-    "notice_date": null,
-    "protest_deadline": null,
-    "current_appraised_value": null,
-    "current_assessed_value": null,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 49704,
+    "current_assessed_value": 49704,
     "tax_amount_due": null,
     "payment_status": null,
     "acres": 0.369,
@@ -5789,6 +6050,12 @@
         "event": "CAD Review",
         "description": "County Appraisal District acknowledged rendering receipt. Awaiting mid-year physical appraisal of construction progress.",
         "user": "System"
+      },
+      {
+        "date": "2026-07-22",
+        "event": "Appraisal Notice Harvested",
+        "description": "CAD Portal Scraper successfully parsed 2026 Notice of Appraised Value for 6330 GOLDEN OAK. Current Year Appraised Value: $49,704. Protest deadline set to 30 days from now.",
+        "user": "CAD Scraper Pipeline"
       }
     ]
   },
@@ -25684,14 +25951,14 @@
     "street_address": "1309 STONEGATE",
     "situs_city": "Caldwell",
     "situs_zip": "77836",
-    "stage": "rendering",
-    "status": "Rendering Filed",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
     "prior_appraised_value": 52714,
     "prior_assessed_value": 52714,
-    "notice_date": null,
-    "protest_deadline": null,
-    "current_appraised_value": null,
-    "current_assessed_value": null,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 62237,
+    "current_assessed_value": 62237,
     "tax_amount_due": null,
     "payment_status": null,
     "acres": 0.239,
@@ -25712,6 +25979,12 @@
         "event": "CAD Review",
         "description": "County Appraisal District acknowledged rendering receipt. Awaiting mid-year physical appraisal of construction progress.",
         "user": "System"
+      },
+      {
+        "date": "2026-07-22",
+        "event": "Appraisal Notice Harvested",
+        "description": "CAD Portal Scraper successfully parsed 2026 Notice of Appraised Value for 1309 STONEGATE. Current Year Appraised Value: $62,237. Protest deadline set to 30 days from now.",
+        "user": "CAD Scraper Pipeline"
       }
     ]
   },
@@ -25948,14 +26221,14 @@
     "street_address": "7928 PECAN VALLEY",
     "situs_city": "Bryan",
     "situs_zip": "77802",
-    "stage": "rendering",
-    "status": "Rendering Filed",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
     "prior_appraised_value": 58721,
     "prior_assessed_value": 58721,
-    "notice_date": null,
-    "protest_deadline": null,
-    "current_appraised_value": null,
-    "current_assessed_value": null,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 76233,
+    "current_assessed_value": 76233,
     "tax_amount_due": null,
     "payment_status": null,
     "acres": 0.218,
@@ -25976,6 +26249,12 @@
         "event": "CAD Review",
         "description": "County Appraisal District acknowledged rendering receipt. Awaiting mid-year physical appraisal of construction progress.",
         "user": "System"
+      },
+      {
+        "date": "2026-07-22",
+        "event": "Appraisal Notice Harvested",
+        "description": "CAD Portal Scraper successfully parsed 2026 Notice of Appraised Value for 7928 PECAN VALLEY. Current Year Appraised Value: $76,233. Protest deadline set to 30 days from now.",
+        "user": "CAD Scraper Pipeline"
       }
     ]
   },
@@ -26095,14 +26374,14 @@
     "street_address": "5890 WILLOW CREEK",
     "situs_city": "Caldwell",
     "situs_zip": "77836",
-    "stage": "rendering",
-    "status": "Rendering Filed",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
     "prior_appraised_value": 34314,
     "prior_assessed_value": 34314,
-    "notice_date": null,
-    "protest_deadline": null,
-    "current_appraised_value": null,
-    "current_assessed_value": null,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 38105,
+    "current_assessed_value": 38105,
     "tax_amount_due": null,
     "payment_status": null,
     "acres": 0.27,
@@ -26123,6 +26402,12 @@
         "event": "CAD Review",
         "description": "County Appraisal District acknowledged rendering receipt. Awaiting mid-year physical appraisal of construction progress.",
         "user": "System"
+      },
+      {
+        "date": "2026-07-22",
+        "event": "Appraisal Notice Harvested",
+        "description": "CAD Portal Scraper successfully parsed 2026 Notice of Appraised Value for 5890 WILLOW CREEK. Current Year Appraised Value: $38,105. Protest deadline set to 30 days from now.",
+        "user": "CAD Scraper Pipeline"
       }
     ]
   },
@@ -26377,14 +26662,14 @@
     "street_address": "5623 POST OAK ROAD",
     "situs_city": "Caldwell",
     "situs_zip": "77836",
-    "stage": "rendering",
-    "status": "Rendering Filed",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
     "prior_appraised_value": 32978,
     "prior_assessed_value": 32978,
-    "notice_date": null,
-    "protest_deadline": null,
-    "current_appraised_value": null,
-    "current_assessed_value": null,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 42684,
+    "current_assessed_value": 42684,
     "tax_amount_due": null,
     "payment_status": null,
     "acres": 0.318,
@@ -26405,6 +26690,12 @@
         "event": "CAD Review",
         "description": "County Appraisal District acknowledged rendering receipt. Awaiting mid-year physical appraisal of construction progress.",
         "user": "System"
+      },
+      {
+        "date": "2026-07-22",
+        "event": "Appraisal Notice Harvested",
+        "description": "CAD Portal Scraper successfully parsed 2026 Notice of Appraised Value for 5623 POST OAK ROAD. Current Year Appraised Value: $42,684. Protest deadline set to 30 days from now.",
+        "user": "CAD Scraper Pipeline"
       }
     ]
   },
@@ -26506,14 +26797,14 @@
     "street_address": "8733 GOLDEN OAK",
     "situs_city": "Bryan",
     "situs_zip": "77802",
-    "stage": "rendering",
-    "status": "Rendering Filed",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
     "prior_appraised_value": 54337,
     "prior_assessed_value": 54337,
-    "notice_date": null,
-    "protest_deadline": null,
-    "current_appraised_value": null,
-    "current_assessed_value": null,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 67384,
+    "current_assessed_value": 67384,
     "tax_amount_due": null,
     "payment_status": null,
     "acres": 0.248,
@@ -26534,6 +26825,12 @@
         "event": "CAD Review",
         "description": "County Appraisal District acknowledged rendering receipt. Awaiting mid-year physical appraisal of construction progress.",
         "user": "System"
+      },
+      {
+        "date": "2026-07-22",
+        "event": "Appraisal Notice Harvested",
+        "description": "CAD Portal Scraper successfully parsed 2026 Notice of Appraised Value for 8733 GOLDEN OAK. Current Year Appraised Value: $67,384. Protest deadline set to 30 days from now.",
+        "user": "CAD Scraper Pipeline"
       }
     ]
   },
@@ -26935,14 +27232,14 @@
     "street_address": "8338 CEDAR CREST",
     "situs_city": "Caldwell",
     "situs_zip": "77836",
-    "stage": "rendering",
-    "status": "Rendering Filed",
+    "stage": "protest",
+    "status": "Appraisal Notice Issued",
     "prior_appraised_value": 63188,
     "prior_assessed_value": 63188,
-    "notice_date": null,
-    "protest_deadline": null,
-    "current_appraised_value": null,
-    "current_assessed_value": null,
+    "notice_date": "2026-07-22",
+    "protest_deadline": "2026-08-21",
+    "current_appraised_value": 77006,
+    "current_assessed_value": 77006,
     "tax_amount_due": null,
     "payment_status": null,
     "acres": 0.293,
@@ -26963,6 +27260,12 @@
         "event": "CAD Review",
         "description": "County Appraisal District acknowledged rendering receipt. Awaiting mid-year physical appraisal of construction progress.",
         "user": "System"
+      },
+      {
+        "date": "2026-07-22",
+        "event": "Appraisal Notice Harvested",
+        "description": "CAD Portal Scraper successfully parsed 2026 Notice of Appraised Value for 8338 CEDAR CREST. Current Year Appraised Value: $77,006. Protest deadline set to 30 days from now.",
+        "user": "CAD Scraper Pipeline"
       }
     ]
   },

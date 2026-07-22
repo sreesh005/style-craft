@@ -405,11 +405,11 @@ export function PropertyTaxDashboard() {
 
           <button
             onClick={() => setIsOnboardingModalOpen(true)}
-            className="px-3 py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded-xl text-xs font-bold transition flex items-center gap-1"
-            title="Onboard a new builder, developer, or enterprise company"
+            className="px-3.5 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-xs"
+            title="Ingest custom property addresses, CAD IDs, or company portfolios"
           >
             <Plus className="h-4 w-4" />
-            <span>Onboard New Builder</span>
+            <span>Ingest Custom Addresses / Entities</span>
           </button>
         </div>
 
@@ -522,18 +522,29 @@ export function PropertyTaxDashboard() {
             </div>
           </div>
           
-          <button
-            id="start-scraper-btn"
-            onClick={handleRunScraper}
-            disabled={isScraping || currentCountyList.length === 0}
-            className="w-full sm:w-auto px-4 py-3 bg-indigo-600 hover:bg-indigo-700 text-white disabled:opacity-40 rounded-xl text-xs font-bold tracking-wider uppercase transition flex items-center justify-center gap-2 self-end shadow-xs"
-          >
-            {isScraping ? (
-              <><RefreshCw className="h-4 w-4 animate-spin" /> Crawling CAD...</>
-            ) : (
-              <><Play className="h-4 w-4" /> Run CAD Scraper</>
-            )}
-          </button>
+          <div className="flex items-center gap-2 w-full sm:w-auto self-end">
+            <button
+              onClick={() => setIsOnboardingModalOpen(true)}
+              className="px-3 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5"
+              title="Add custom address list or entity name for CAD scraping"
+            >
+              <Plus className="h-4 w-4 text-indigo-600" />
+              <span>Import List</span>
+            </button>
+
+            <button
+              id="start-scraper-btn"
+              onClick={handleRunScraper}
+              disabled={isScraping || currentCountyList.length === 0}
+              className="w-full sm:w-auto px-4 py-3 bg-indigo-600 hover:bg-indigo-700 text-white disabled:opacity-40 rounded-xl text-xs font-bold tracking-wider uppercase transition flex items-center justify-center gap-2 shadow-xs"
+            >
+              {isScraping ? (
+                <><RefreshCw className="h-4 w-4 animate-spin" /> Crawling CAD...</>
+              ) : (
+                <><Play className="h-4 w-4" /> Run CAD Scraper</>
+              )}
+            </button>
+          </div>
         </div>
       </div>
 

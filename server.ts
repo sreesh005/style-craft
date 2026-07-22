@@ -203,36 +203,68 @@ app.post("/api/companies/create", (req, res) => {
 });
 
 // ---------------------------------------------------------
-// Batch Address Import Endpoint
+// Batch Address & Entity Ingest Endpoint
 // ---------------------------------------------------------
 app.post("/api/properties/import", (req, res) => {
-  const { entityName, county, addressList } = req.body;
+  const { entityName, county, addressList, city, zip, taxRate } = req.body;
   if (!addressList || !Array.isArray(addressList) || addressList.length === 0) {
     return res.status(400).json({ error: "addressList array is required" });
   }
 
-  const targetEntity = entityName || currentUser.companyName || "Stylecraft Builders Inc";
-  const targetCounty = county || "Brazos";
+  const targetEntity = (entityName && entityName.trim()) ? entityName.trim() : (currentUser.companyName || "Custom Developer");
+  const targetCounty = (county && county.trim()) ? county.trim() : "Brazos";
+  const defaultCity = (city && city.trim()) ? city.trim() : "College Station";
+  const defaultZip = (zip && zip.trim()) ? zip.trim() : "77845";
+  const rate = typeof taxRate === "number" && taxRate > 0 ? taxRate : 2.15;
+
+  // Register company/entity in companiesStore if it doesn't exist
+  const compId = targetEntity.toLowerCase().replace(/[^a-z0-9]/g, "_");
+  let existingComp = companiesStore.find(c => c.id === compId || c.name.toLowerCase() === targetEntity.toLowerCase());
+  if (!existingComp) {
+    existingComp = {
+      id: compId,
+      name: targetEntity,
+      legalEntities: [targetEntity],
+      counties: [targetCounty],
+      totalProperties: 0,
+      createdDate: new Date().toISOString().split("T")[0],
+      isDemo: false
+    };
+    companiesStore.push(existingComp);
+  }
 
   const newRecords: any[] = [];
-  addressList.forEach((addr: string, i: number) => {
-    if (!addr.trim()) return;
-    const cleanAddr = addr.trim().toUpperCase();
-    const propId = String(Math.floor(300000 + Math.random() * 600000));
-    const geoId = `88900-${String(2000 + i)}-${String(200 + i)}`;
+  addressList.forEach((line: string, i: number) => {
+    if (!line || !line.trim()) return;
+    const cleanLine = line.trim();
+    
+    // Determine if line is a CAD Property ID (e.g., pure digits like 482910)
+    const isPureDigits = /^\d{5,8}$/.test(cleanLine);
+    let propId = isPureDigits ? cleanLine : String(Math.floor(300000 + Math.random() * 600000));
+    let streetAddress = isPureDigits ? `CAD Property Parcel #${cleanLine}` : cleanLine.toUpperCase();
+    let ownerEntity = targetEntity;
+
+    // Check if line looks like an entity name instead of an address (e.g. contains LLC, Inc, LP, Builders, Homes, Dev)
+    if (!isPureDigits && /\b(LLC|INC|LP|CORP|HOMES|BUILDERS|PROPERTIES|DEVELOPMENT|GROUP|PARTNERS)\b/i.test(cleanLine) && !/\d+\s+[A-Z]/.test(cleanLine)) {
+      ownerEntity = cleanLine;
+      streetAddress = `TBD LOT ${i + 1}, ${cleanLine.toUpperCase()} SUBDIVISION PH 1`;
+    }
+
+    const geoId = `77800-${String(2000 + i)}-${String(100 + i)}`;
     const priorVal = Math.round(35000 + Math.random() * 25000);
-    const currentVal = Math.round(160000 + Math.random() * 140000);
+    const currentVal = Math.round(185000 + Math.random() * 140000);
+    const taxDue = Math.round((currentVal * rate) / 100);
 
     const rec = {
-      id: `prop_imp_${Date.now()}_${i}`,
+      id: `prop_imp_${Date.now()}_${i}_${Math.floor(Math.random()*1000)}`,
       property_id: propId,
       geo_id: geoId,
-      owner_name: targetEntity,
+      owner_name: ownerEntity,
       county: targetCounty,
-      legal_description: `LOT ${i + 1}, BLOCK 1, IMPORTED SUBDIVISION`,
-      street_address: cleanAddr,
-      situs_city: "College Station",
-      situs_zip: "77845",
+      legal_description: `LOT ${i + 1}, BLOCK ${Math.floor(i / 5) + 1}, ${ownerEntity.toUpperCase()} PH 1`,
+      street_address: streetAddress,
+      situs_city: defaultCity,
+      situs_zip: defaultZip,
       stage: "protest" as const,
       status: "Appraisal Notice Issued",
       prior_appraised_value: priorVal,
@@ -241,18 +273,18 @@ app.post("/api/properties/import", (req, res) => {
       protest_deadline: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split("T")[0],
       current_appraised_value: currentVal,
       current_assessed_value: currentVal,
-      tax_amount_due: Math.round(currentVal * 0.021),
+      tax_amount_due: taxDue,
       payment_status: "unpaid" as const,
-      acres: 0.15,
+      acres: 0.18,
       year_built: 2026,
       is_under_construction: true,
-      tax_rate: 2.1,
+      tax_rate: rate,
       history: [
         {
           date: new Date().toISOString().split("T")[0],
-          event: "Address Ingested",
-          description: `Custom address imported for real-time CAD valuation tracking.`,
-          user: currentUser.name
+          event: "Address / Entity Ingested",
+          description: `Custom property entry ingested into continuous CAD appraisal harvest pipeline for ${ownerEntity}.`,
+          user: currentUser.name || "Real Estate Portfolio Manager"
         }
       ]
     };
@@ -261,8 +293,12 @@ app.post("/api/properties/import", (req, res) => {
     cachedProperties.unshift(rec);
   });
 
+  if (existingComp) {
+    existingComp.totalProperties = (existingComp.totalProperties || 0) + newRecords.length;
+  }
+
   saveProperties(cachedProperties);
-  res.json({ success: true, count: newRecords.length, records: newRecords });
+  res.json({ success: true, count: newRecords.length, records: newRecords, company: existingComp });
 });
 
 // ---------------------------------------------------------

@@ -40,7 +40,7 @@ export function ScraperConsole({ logs, isScraping, activeEntity, activeCounty, p
 
       {/* Terminal Screen */}
       <div id="scraper-log-console" className="flex-1 overflow-y-auto p-4 space-y-2 text-xs leading-relaxed select-text font-mono selection:bg-emerald-800 selection:text-white">
-        {logs.length === 0 ? (
+        {(!logs || logs.length === 0) ? (
           <div className="h-full flex flex-col items-center justify-center text-slate-600">
             <Terminal className="h-8 w-8 mb-2 opacity-40" />
             <p className="text-[11px] uppercase tracking-wider font-bold">Terminal initialized. Ready for CAD Scraping.</p>
@@ -49,31 +49,33 @@ export function ScraperConsole({ logs, isScraping, activeEntity, activeCounty, p
         ) : (
           <>
             <div className="text-slate-500 text-[10px] border-b border-slate-900 pb-1 mb-2">
-              SESSION START // TARGET: {activeEntity.toUpperCase()} // COUNTY: {activeCounty.toUpperCase()}
+              SESSION START // TARGET: {(activeEntity || "").toUpperCase()} // COUNTY: {(activeCounty || "").toUpperCase()}
             </div>
             
-            {logs.map((log) => {
+            {(logs || []).map((log, index) => {
+              if (!log) return null;
               let LogIcon = Info;
               let textColor = "text-slate-300";
+              const level = log.level || "info";
               
-              if (log.level === "success") {
+              if (level === "success") {
                 LogIcon = CheckCircle;
                 textColor = "text-emerald-400";
-              } else if (log.level === "warning") {
+              } else if (level === "warning") {
                 LogIcon = AlertTriangle;
                 textColor = "text-amber-400";
-              } else if (log.level === "error") {
+              } else if (level === "error") {
                 LogIcon = AlertTriangle;
                 textColor = "text-red-400";
               }
 
               return (
-                <div key={log.id} className={`flex items-start gap-2.5 ${textColor} leading-normal`}>
+                <div key={log.id || index} className={`flex items-start gap-2.5 ${textColor} leading-normal`}>
                   <span className="text-[10px] text-slate-500 font-semibold select-none flex-shrink-0 mt-0.5 font-mono">
-                    [{log.timestamp}]
+                    [{log.timestamp || ""}]
                   </span>
                   <LogIcon className="h-3.5 w-3.5 flex-shrink-0 mt-0.5" />
-                  <span className="flex-1 whitespace-pre-wrap">{log.message}</span>
+                  <span className="flex-1 whitespace-pre-wrap">{log.message || ""}</span>
                 </div>
               );
             })}
