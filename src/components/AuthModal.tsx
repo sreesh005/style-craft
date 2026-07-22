@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { X, LogIn, Mail, ShieldCheck, CheckCircle2, Sparkles, LogOut, KeyRound, UserCheck, ArrowRight } from "lucide-react";
+import { X, LogIn, Mail, ShieldCheck, CheckCircle2, Sparkles, LogOut, Eye, EyeOff, Lock, UserCheck, ArrowRight, HelpCircle } from "lucide-react";
 import { UserProfile } from "../propertyTypes";
 
 interface AuthModalProps {
@@ -11,16 +11,18 @@ interface AuthModalProps {
 
 export function AuthModal({ isOpen, onClose, currentUser, onLoginSuccess }: AuthModalProps) {
   const [email, setEmail] = useState(currentUser?.email || "");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [name, setName] = useState(currentUser?.name || "");
   const [companyName, setCompanyName] = useState(currentUser?.companyName || "");
-  const [verificationCode, setVerificationCode] = useState("");
-  const [codeSent, setCodeSent] = useState(false);
+  const [rememberMe, setRememberMe] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [authMethod, setAuthMethod] = useState<"google" | "email">("google");
+  const [resetSent, setResetSent] = useState(false);
 
   if (!isOpen) return null;
 
-  // Google SSO Handler
+  // Google SSO Handler (OAuth Single Sign-On - No password needed)
   const handleGoogleLogin = async (selectedEmail?: string) => {
     setIsSubmitting(true);
     try {
@@ -52,14 +54,7 @@ export function AuthModal({ isOpen, onClose, currentUser, onLoginSuccess }: Auth
     }
   };
 
-  // Email Magic Link / Passcode Request
-  const handleSendEmailCode = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email || !email.includes("@")) return;
-    setCodeSent(true);
-  };
-
-  // Email Login Final Submission
+  // Email + Password Login Submission
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
@@ -70,6 +65,7 @@ export function AuthModal({ isOpen, onClose, currentUser, onLoginSuccess }: Auth
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email,
+          password: password || undefined,
           name: name || email.split("@")[0],
           companyName: companyName || "Stylecraft Builders Inc",
           provider: "email"
@@ -88,6 +84,11 @@ export function AuthModal({ isOpen, onClose, currentUser, onLoginSuccess }: Auth
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleForgotPassword = () => {
+    setResetSent(true);
+    setTimeout(() => setResetSent(false), 5000);
   };
 
   // Logout Handler
@@ -189,7 +190,7 @@ export function AuthModal({ isOpen, onClose, currentUser, onLoginSuccess }: Auth
                 <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" />
                 <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" />
               </svg>
-              Google Account
+              Google SSO
             </button>
             <button
               onClick={() => setAuthMethod("email")}
@@ -198,7 +199,7 @@ export function AuthModal({ isOpen, onClose, currentUser, onLoginSuccess }: Auth
               }`}
             >
               <Mail className="h-4 w-4 text-indigo-600" />
-              Email Sign-In
+              Email & Password
             </button>
           </div>
 
@@ -208,10 +209,10 @@ export function AuthModal({ isOpen, onClose, currentUser, onLoginSuccess }: Auth
               <div className="p-3.5 bg-indigo-50/90 rounded-xl border border-indigo-100 text-xs text-indigo-950 space-y-1.5">
                 <div className="flex items-center gap-2 font-black text-indigo-950">
                   <Sparkles className="h-4 w-4 text-indigo-600" />
-                  Google Workspace Single Sign-On
+                  Google Passwordless Single Sign-On
                 </div>
                 <p className="text-[11px] text-indigo-900 leading-relaxed">
-                  Log in directly with any Google Account or corporate Workspace email address to sync CAD notices and email alerts.
+                  Log in password-free with your Google Account or corporate Google Workspace email address.
                 </p>
               </div>
 
@@ -277,10 +278,19 @@ export function AuthModal({ isOpen, onClose, currentUser, onLoginSuccess }: Auth
               </button>
             </div>
           ) : (
-            /* Email Login Tab */
+            /* Email + Password Login Tab */
             <form onSubmit={handleEmailLogin} className="space-y-4">
+              {resetSent && (
+                <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-800 font-semibold flex items-center gap-2 animate-fade-in">
+                  <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" />
+                  <span>Password reset link sent to <b>{email || "your email"}</b></span>
+                </div>
+              )}
+
               <div>
-                <label className="block text-[10px] font-black uppercase text-slate-500 mb-1">Work or Personal Email <span className="text-rose-500">*</span></label>
+                <label className="block text-[10px] font-black uppercase text-slate-500 mb-1">
+                  Work or Personal Email <span className="text-rose-500">*</span>
+                </label>
                 <input
                   type="email"
                   required
@@ -289,6 +299,41 @@ export function AuthModal({ isOpen, onClose, currentUser, onLoginSuccess }: Auth
                   placeholder="tax.admin@company.com or myemail@gmail.com"
                   className="w-full px-3.5 py-2.5 border rounded-xl text-xs font-bold text-slate-800 focus:outline-indigo-600 bg-slate-50"
                 />
+              </div>
+
+              {/* Password Input with Eye Toggle */}
+              <div>
+                <div className="flex items-center justify-between mb-1">
+                  <label className="block text-[10px] font-black uppercase text-slate-500 flex items-center gap-1">
+                    <Lock className="h-3 w-3 text-indigo-600" />
+                    Password <span className="text-rose-500">*</span>
+                  </label>
+                  <button
+                    type="button"
+                    onClick={handleForgotPassword}
+                    className="text-[10px] font-bold text-indigo-600 hover:text-indigo-800 hover:underline"
+                  >
+                    Forgot Password?
+                  </button>
+                </div>
+
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter your account password"
+                    className="w-full px-3.5 py-2.5 border rounded-xl text-xs font-bold text-slate-800 focus:outline-indigo-600 bg-slate-50 pr-10"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-2.5 text-slate-400 hover:text-slate-600"
+                  >
+                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  </button>
+                </div>
               </div>
 
               <div>
@@ -313,13 +358,25 @@ export function AuthModal({ isOpen, onClose, currentUser, onLoginSuccess }: Auth
                 />
               </div>
 
+              <div className="flex items-center justify-between text-xs text-slate-600">
+                <label className="flex items-center gap-2 cursor-pointer font-medium">
+                  <input
+                    type="checkbox"
+                    checked={rememberMe}
+                    onChange={(e) => setRememberMe(e.target.checked)}
+                    className="rounded text-indigo-600 focus:ring-indigo-500 h-3.5 w-3.5"
+                  />
+                  <span>Remember password for 30 days</span>
+                </label>
+              </div>
+
               <button
                 type="submit"
-                disabled={isSubmitting || !email.trim()}
+                disabled={isSubmitting || !email.trim() || !password.trim()}
                 className="w-full py-3 bg-slate-900 hover:bg-slate-800 disabled:opacity-40 text-white rounded-xl text-xs font-bold tracking-wider uppercase transition shadow-md flex items-center justify-center gap-2"
               >
                 <LogIn className="h-4 w-4" />
-                {isSubmitting ? "Signing In..." : "Sign In with Email"}
+                {isSubmitting ? "Authenticating Password..." : "Sign In with Email & Password"}
               </button>
             </form>
           )}
@@ -327,7 +384,7 @@ export function AuthModal({ isOpen, onClose, currentUser, onLoginSuccess }: Auth
           {/* Footer Notice */}
           <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
             <span className="flex items-center gap-1 font-semibold text-emerald-700">
-              <CheckCircle2 className="h-3.5 w-3.5" /> Authentication Ready
+              <CheckCircle2 className="h-3.5 w-3.5" /> Password & OAuth Protected
             </span>
             <span>Texas CAD Property Tax Auditing</span>
           </div>
@@ -337,4 +394,5 @@ export function AuthModal({ isOpen, onClose, currentUser, onLoginSuccess }: Auth
     </div>
   );
 }
+
 

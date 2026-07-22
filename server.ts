@@ -89,9 +89,14 @@ app.get("/api/auth/me", (req, res) => {
 });
 
 app.post("/api/auth/login", (req, res) => {
-  const { email, name, companyName, provider } = req.body;
+  const { email, password, name, companyName, provider } = req.body;
   if (!email) {
     return res.status(400).json({ error: "Email is required" });
+  }
+
+  // If email provider was used, ensure a password was provided
+  if (provider === "email" && !password) {
+    return res.status(400).json({ error: "Password is required for email authentication" });
   }
 
   currentUser = {
@@ -105,7 +110,7 @@ app.post("/api/auth/login", (req, res) => {
     googleConnected: provider === "google"
   };
 
-  res.json({ success: true, user: currentUser });
+  res.json({ success: true, user: currentUser, provider: provider || "email" });
 });
 
 app.post("/api/auth/logout", (req, res) => {
