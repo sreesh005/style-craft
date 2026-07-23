@@ -558,7 +558,7 @@ export function PropertyTaxDashboard() {
             )}
           </button>
 
-          {/* User Sign-In / Account Badge */}
+          {/* User Sign-In / Account Badge (COMMENTED OUT FOR NOW)
           <button
             onClick={() => setIsAuthModalOpen(true)}
             className="px-3.5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition flex items-center gap-2 shadow-xs border border-slate-700/60"
@@ -585,6 +585,7 @@ export function PropertyTaxDashboard() {
               )}
             </div>
           </button>
+          */}
         </div>
 
       </div>
@@ -801,13 +802,14 @@ export function PropertyTaxDashboard() {
         onFileProtest={handleFileProtest}
       />
 
-      {/* Auth Modal (Google & Email Login) */}
+      {/* Auth Modal (Google & Email Login) - COMMENTED OUT FOR NOW
       <AuthModal
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
         currentUser={currentUser}
         onLoginSuccess={(user) => setCurrentUser(user)}
       />
+      */}
 
       {/* Multi-Tenant Company Onboarding Modal */}
       <CompanyOnboardingModal
